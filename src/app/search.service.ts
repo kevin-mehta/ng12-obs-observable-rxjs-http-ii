@@ -26,7 +26,8 @@ export class SearchService {
             item.title,
             item.price,
             item.category,
-            item.description
+            item.description,
+            item.image
           );
         });
       })

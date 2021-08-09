@@ -31,9 +31,10 @@ export class AppComponent {
       debounceTime(400),
       distinctUntilChanged(),
       tap(_ => (this.loading = true)),
-      switchMap(term => this.searchService.search(term)),
+      switchMap((term: any) => this.searchService.search(term)),
       tap(_ => (this.loading = false))
     );
+    console.log('this.results: ', this.results);
 
     // this.results = this.searchField.valueChanges
     //   .debounceTime(400)

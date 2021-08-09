@@ -4,6 +4,7 @@ export class SearchItem {
     public title: string,
     public price: string,
     public category: string,
-    public description: string
+    public description: string,
+    public image: string
   ) {}
 }
