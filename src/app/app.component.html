@@ -17,9 +17,60 @@
   <p class="lead" *ngIf="loading">Loading...</p>
 </div>
 
-<ul class="list-group">
+<!-- <ul class="list-group">
   <li class="list-group-item" *ngFor="let track of results | async">
     <img src="{{track.image}}" />
     <a target="_blank" href="{{track.price}}">{{ track.description }} </a>
   </li>
-</ul>
+</ul> -->
+
+<div *ngFor="let track of results | async">
+  <div class="odet-prod--wrapper" style="">
+    <div class=" odet-prod--col odet-prod--status-container">
+      <div class="odet-prod--row odet-prod--grouping-tile">
+        <div class="odet-prod--col odet-prod--img">
+          <img class="odet-prod--img-graphic" src="{{track.image}}" />
+        </div>
+        <div class="odet-prod--col odet-prod--details">
+          <div class="odet-prod--row odet-prod--brand">
+            <span class="odet-prod--brand-text">{{ track.title }}</span>
+          </div>
+          <div class="odet-prod--row odet-prod--name">
+            <span class="odet-prod--name-text">{{ track.description }}</span>
+          </div>
+          <div class="odet-prod--row odet-prod--item-id">
+            <span class="odet-prod--item-id-text"
+              >Item #:N3-1023 / 2148203
+            </span>
+          </div>
+          <div class="odet-prod--row odet-prod--rating-review">
+            <span class="odet-prod--review-text">Write a Review</span>
+          </div>
+        </div>
+        <div class="odet-prod--col odet-prod--qty-price">
+          <div class="odet-prod--row odet-prod--qty">
+            <span class="odet-prod--qty-text">Qty. & Price paid</span>
+          </div>
+          <div class="odet-prod--row odet-prod--price">
+            <span class="odet-prod--price-text">1@${{track.price}}</span>
+          </div>
+          <div class="odet-prod--row odet-prod--warning">
+            <span class="odet-prod--warning-text">1 qty cancelled</span>
+          </div>
+        </div>
+        <div class="odet-prod--col odet-prod--cta-disclaimer">
+          <div class="odet-prod--row odet-prod--cta">
+            <button class="odet-prod--cta-btn">
+              <span class="odet-prod--cta-text">Buy Again</span>
+            </button>
+          </div>
+          <div class="odet-prod--row odet-prod--disclaimer">
+            <span class="odet-prod--disclaimer-text"
+              >Item will add to cart with current price*</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
