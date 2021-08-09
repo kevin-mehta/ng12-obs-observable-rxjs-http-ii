@@ -1,9 +1,9 @@
 class SearchItem {
   constructor(
-    public track: string,
-    public artist: string,
-    public link: string,
-    public thumbnail: string,
-    public artistId: string
+    public id: number,
+    public title: string,
+    public price: string,
+    public category: string,
+    public description: string
   ) {}
 }

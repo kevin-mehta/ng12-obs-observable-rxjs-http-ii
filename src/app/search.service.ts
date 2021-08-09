@@ -1,19 +1,31 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/dist/types/internal/Observable';
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap
+} from 'rxjs/operators';
+
 @Injectable()
 export class SearchService {
-  apiRoot: string = 'https://itunes.apple.com/search';
+  // apiRoot: string = 'https://itunes.apple.com/search';
   constructor(private http: HttpClient) {}
 
   search(term: string): Observable<SearchItem[]> {
-    let apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
+    console.log('Search term: ', term);
+    let apiURL = 'https://fakestoreapi.com/products';
     return this.http.get(apiURL).pipe(
-      map(res => {
-        return res.results.map(item => {
+      map((res: any) => {
+        return res.map(item => {
           return new SearchItem(
-            item.trackName,
-            item.artistName,
-            item.trackViewUrl,
-            item.artworkUrl30,
-            item.artistId
+            item.id,
+            item.title,
+            item.price,
+            item.category,
+            item.description
           );
         });
       })

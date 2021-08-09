@@ -8,6 +8,7 @@ import {
   tap
 } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'my-app',
@@ -24,13 +25,21 @@ export class AppComponent {
 
   ngOnInit() {
     this.searchField = new FormControl();
-    this.results = this.searchField.valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      tap(_ => (this.loading = true)),
-      switchMap(term => this.itunes.search(term)),
-      tap(_ => (this.loading = false))
-    );
+    // this.results = this.searchField.valueChanges.pipe(
+    //   debounceTime(400),
+    //   distinctUntilChanged(),
+    //   tap(_ => (this.loading = true)),
+    //   switchMap(term => this.itunes.search(term)),
+    //   tap(_ => (this.loading = false))
+    // );
+    this.results = this.searchField.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .map(term => this.itunes.search(term))
+      .subscribe(value => {
+        1;
+        value.subscribe(other => console.log(other))(2);
+      });
   }
 
   doSearch(term: string) {

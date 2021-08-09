@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SearchService } from './search.service';
+
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, FormsModule, HttpClientModule],
   declarations: [AppComponent, HelloComponent],
