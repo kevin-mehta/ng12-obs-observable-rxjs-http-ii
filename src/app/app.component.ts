@@ -1,4 +1,13 @@
 import { Component, VERSION } from '@angular/core';
+import { Observable } from 'rxjs/dist/types/internal/Observable';
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap
+} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'my-app',
