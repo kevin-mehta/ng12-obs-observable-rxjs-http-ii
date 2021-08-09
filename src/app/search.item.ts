@@ -1,4 +1,4 @@
-class SearchItem {
+export class SearchItem {
   constructor(
     public id: number,
     public title: string,

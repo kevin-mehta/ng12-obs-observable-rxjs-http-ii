@@ -1,5 +1,5 @@
 import { Component, VERSION } from '@angular/core';
-import { Observable } from 'rxjs/dist/types/internal/Observable';
+import { Observable } from 'rxjs';
 import {
   map,
   debounceTime,
@@ -9,6 +9,7 @@ import {
 } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { SearchService } from './search.service';
+import { SearchItem } from './search.item';
 
 @Component({
   selector: 'my-app',
@@ -17,32 +18,42 @@ import { SearchService } from './search.service';
 })
 export class AppComponent {
   name = 'Angular ' + VERSION.major;
-  private loading: boolean = false;
-  private results: Observable<SearchItem[]>;
-  private searchField: FormControl;
+  loading: boolean = false;
+  results: Observable<SearchItem[]>;
+  searchField: FormControl;
 
-  constructor(private itunes: SearchService) {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     this.searchField = new FormControl();
-    // this.results = this.searchField.valueChanges.pipe(
-    //   debounceTime(400),
-    //   distinctUntilChanged(),
-    //   tap(_ => (this.loading = true)),
-    //   switchMap(term => this.itunes.search(term)),
-    //   tap(_ => (this.loading = false))
-    // );
-    this.results = this.searchField.valueChanges
-      .debounceTime(400)
-      .distinctUntilChanged()
-      .map(term => this.itunes.search(term))
-      .subscribe(value => {
-        1;
-        value.subscribe(other => console.log(other))(2);
-      });
+
+    this.results = this.searchField.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      tap(_ => (this.loading = true)),
+      switchMap(term => this.searchService.search(term)),
+      tap(_ => (this.loading = false))
+    );
+
+    // this.results = this.searchField.valueChanges
+    //   .debounceTime(400)
+    //   .distinctUntilChanged()
+    //   .map(term => this.searchService.search(term))
+    //   .subscribe(value => {
+    //     1;
+    //     value.subscribe(other => console.log(other))(2);
+    //   });
   }
 
   doSearch(term: string) {
-    this.itunes.search(term);
+    // this.searchService.search(term);
+
+    // this.searchService.search(term).subscribe((data: any) => {
+    //   this.loading = false;
+    //   this.results = data;
+    //   console.log('this.results: ', this.results);
+    // });
+
+    this.results = this.searchService.search(term);
   }
 }

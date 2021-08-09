@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/dist/types/internal/Observable';
+import { Observable } from 'rxjs';
 import {
   map,
   debounceTime,
@@ -8,6 +8,7 @@ import {
   switchMap,
   tap
 } from 'rxjs/operators';
+import { SearchItem } from './search.item';
 
 @Injectable()
 export class SearchService {
@@ -19,7 +20,7 @@ export class SearchService {
     let apiURL = 'https://fakestoreapi.com/products';
     return this.http.get(apiURL).pipe(
       map((res: any) => {
-        return res.map(item => {
+        return res.map((item: any) => {
           return new SearchItem(
             item.id,
             item.title,
