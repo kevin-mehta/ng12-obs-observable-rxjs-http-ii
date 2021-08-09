@@ -11,7 +11,7 @@ export class SearchService {
 
   search(term: string): Observable<SearchItem[]> {
     console.log('Search term: ', term);
-    let apiURL = 'https://fakestoreapi.com/products';
+    let apiURL = 'https://fakestoreapi.com/products?limit=5';
     return this.http.get(apiURL).pipe(
       map((res: any) => {
         return res.map((item: any) => {
