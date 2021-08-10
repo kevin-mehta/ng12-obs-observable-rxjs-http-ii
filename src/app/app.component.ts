@@ -29,7 +29,7 @@ export class AppComponent {
     this.searchField = new FormControl();
 
     this.results = this.searchField.valueChanges.pipe(
-      debounceTime(400),
+      debounceTime(200),
       distinctUntilChanged(),
       tap(_ => (this.loading = true)),
       switchMap((term: any) => this.searchService.search(term)),
