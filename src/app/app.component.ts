@@ -21,7 +21,7 @@ export class AppComponent {
   loading: boolean = false;
   results: Observable<SearchItem[]>;
   searchField: FormControl;
-  toShowTileView: boolean = true;
+  toShowTileView: boolean = false;
 
   constructor(private searchService: SearchService) {}
 
