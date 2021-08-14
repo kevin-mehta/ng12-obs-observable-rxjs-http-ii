@@ -43,7 +43,7 @@ export class AppComponent {
     //   .map(term => this.searchService.search(term))
     //   .subscribe(value => {
     //     1;
-    //     value.subscribe( => console.log(other))(2);
+    //     value.subscribe(other => console.log(other))(2);
     //   });
   }
 
