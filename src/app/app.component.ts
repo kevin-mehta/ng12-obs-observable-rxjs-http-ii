@@ -37,7 +37,7 @@ export class AppComponent {
     );
     console.log('this.results: ', this.results);
 
-    // this.results = this.searchField.
+    // this.results = this..
     //   .debounceTime(400)
     //   .distinctUntilChanged()
     //   .map(term => this.searchService.search(term))
