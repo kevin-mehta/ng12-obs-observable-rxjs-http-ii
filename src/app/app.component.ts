@@ -50,7 +50,7 @@ export class AppComponent {
   doSearch(term: string) {
     // this.searchService.search(term);
 
-    // this.searchService.search(term).((data: any) => {
+    // this.searchService.search(term).subscribe((data: any) => {
     //   this.loading = false;
     //   this.results = data;
     //   console.log('this.results: ', this.results);
